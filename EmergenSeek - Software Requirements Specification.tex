@@ -1,0 +1,292 @@
+\documentclass{scrreprt}
+\usepackage{amsmath}
+\usepackage[english]{babel}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{tipa}
+\usepackage{underscore}
+\usepackage{soul}
+\usepackage{graphicx,float,tikz}
+
+\hypersetup{
+    bookmarks=true,
+    pdftitle={EmergenSeek - Software Requirements Specification},
+    pdfauthor={},
+    pdfsubject={SRS for EmergenSeek},
+    pdfkeywords={SRS, Software, Requirements, Specification, web, platform, API, emergenseek.com},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=black,	
+    filecolor=black,
+    urlcolor=blue,
+    linktoc=page
+}
+
+% Definitions
+\def\revdate{Wednesday, February 13, 2019}
+
+% Commands
+\newcommand{\entry}[4]{\textbf{#1}\markboth{#1}{#1}\ {(#2)}\ \textit{#3}\ $\bullet$\ {#4}} 
+
+
+\begin{document}
+
+\begin{flushleft}
+    \rule{16cm}{5pt} \vskip1cm
+    \begin{bfseries}
+        \LARGE{SOFTWARE\\REQUIREMENTS SPECIFICATION} \\
+        \small{Includes Summarization of Interview Results} \\
+        \vspace{1cm}
+        \LARGE{
+        \vspace{1cm}
+       	EmergenSeek \\
+        Finding Assistance When You Need It \\
+        \vspace{1cm}
+        Prepared for \\
+        \vspace{1cm}
+        Texas Tech University - CS 4366 \\
+        Senior Capstone Project\\
+        Professor: Dr. Sunlim Ho\\
+        Students: Suhas Bacchu, Derek Fritz, Kevon Manahan, Annie Vo, Simon Woldemichael \\}
+        \revdate \\
+    \end{bfseries}
+\end{flushleft}
+
+
+\tableofcontents
+
+
+\chapter*{Revision History}
+\begin{center}
+\centerline{
+    \begin{tabular}{|c|c|c|}
+        \hline
+		Date & Reason For Changes & Delivery Date\\
+        \hline
+	    February 5, 2019 & Initial Creation & February 13, 2019 \\
+        \hline
+    \end{tabular}
+}
+\vspace{5mm}
+This \LaTeX{} document is under source control management using \hyperlink{https://git-scm.com/}{Git}.\\
+\vspace{5mm}
+The initial template for this \LaTeX{} document was found on GitHub.\\ 
+Source: \url{https://github.com/jpeisenbarth/SRS-Tex} \\
+\vspace{5mm}
+This \LaTeX{} document follows the IEEE Recommended Practice for Software Requirements Specifications per IEEE Std 830\textsuperscript{TM}-1998(R2009).\\ 
+Reference: \url{http://www.cse.msu.edu/~cse870/IEEEXplore-SRS-template.pdf}\\
+\end{center}
+
+
+\chapter{Introduction}
+
+
+\section{Purpose}
+\par ~ The purpose of this application will be to develop a cross-platform mobile application which will assist users in gaining access to emergency information and notifications. The application will provide friends and family with realtime location-based information. The application will serve as a go-to utility for those that are traveling, both locally and abroad.
+\par ~ The intended audience of the document will be advisor's and stakeholders who will have procedural responsibilities throughout the development of this application. This document should be read in the order that it is presented. 
+
+
+\section{Project Scope}
+\par ~ As the timeframe for this project is 3 months, developers shall consider the scope of this project to produce a functional, minimum viable product (MVP) which covers important usecases, functional requirements, and non-functional requirements. 
+
+\par ~ These MVP components include, (1) functional use of an SOS button which will automatically notify family members and/or emergency services depending on 2 degrees of emergency severity, (2) the ability to search for nearby hospitals, pharmacies, and other facilities that will assist the user in a time of emergency or distress, (3) location based polling which will broadcast metadata regarding the users current location to their primary contacts, friends, and family members, and (4), paired with (3), the ability to granularly define what permissions contacts have for the purpose of giving the user control over what private information they choose to share and with whom.
+
+\par ~ Assumptions made in creating the MVP will ensure that the scope and size of the project is not too broad. Allowing the application to be generalized to only the specifics of emergency situations and notifications provides the developers with a much more specific set of features to implement.
+
+\par ~ Software products use include the Go programming language, which will serve as a backend API, React Native, which will serve as our single source, cross-platform mobile application framework, and a suite of Amazon Web Services to be used as utilities in driving the development of the program, as well as providing necessary tiers for the application. For instance, we will DynamoDB as the database tier and Lambda and API Gateway as the application platform; formally known as a a Functions-as-a-Service (Faas) offering.
+
+
+\section{Definitions, acronyms, and abbreviations}
+Definitions, acronyms, and abbreviations will be added to this section as they arise. Single use acronyms and abbreviations will be enumerated in-line, within the context that they are used.
+\begin{enumerate}
+	\item[i.] API - Application Programming Interface - An abstraction, provided by a developer or exposed to a developer for the sake of simplifying front-end and downstream programming and implementation.
+\end{enumerate}
+ 
+\section{References}
+\begin{enumerate}
+\item[a.] Golang - Google's statically typed, compiled programming language
+	\begin{itemize}
+		\item[i.] Language Specification \url{https://golang.org/ref/spec}
+		\item[ii.] Documentation Generation - GoDoc - \url{https://godoc.org/-/about}
+	\end{itemize}
+\item[b.] React Native - A JavaScript, cross-platform mobile application framework 
+	\begin{itemize}
+		\item[i.] Framework Specification - \url{https://facebook.github.io/react-native/docs/getting-started.html}
+		\item[ii.] ECMAScript Specification - \url{http://www.ecma-international.org/ecma-262/6.0/}0
+	\end{itemize}
+\item[b.] Amazon Web Services
+	\begin{itemize}
+		\item[i.] Documentation \url{https://docs.aws.amazon.com/index.html}
+		\item[ii.] DocumentDB - \url{https://aws.amazon.com/dynamodb/}
+	\end{itemize}
+\item[d.] API architecture
+	\begin{itemize}
+		\item[i.] OpenAPI Specification - \url{https://github.com/OAI/OpenAPI-Specification}
+		\item[ii.] HTTP/2 - Version 2 of the Hypertext Transfer Protocol per RFC7540 - \url{https://tools.ietf.org/html/rfc7540}
+		\item[iii.] gRPC - Google's custom Remote Procedure Call framework - \url{https://grpc.io/}
+		\item[iv.] Protocol Buffers - Fast binary serialization and program definition language - \url{https://developers.google.com/protocol-buffers/}
+	\end{itemize}
+\item[c.] File encoding
+	\begin{itemize}
+		\item[i.] UTF-8 - \url{https://www.fileformat.info/info/unicode/utf8.htm}
+	\end{itemize}
+\end{enumerate}
+
+
+\section{Overview}
+\par ~ The rest of this Software Requirements Specification document will describe functional and non-functional requirements of the platform, constraints of various interfaces, and stimulus-response assumptions. Later revisions of this document may include pricing and marketing strategies to monetize and scale the application. This document will not contain design documents, as Project 3 is defined as a Software Design Specification. API specifics and implementation details will also be left out of this document. 
+
+\par ~ Finally, the latter end of this document shall include summarized results of user interviews that were conducted. Data for these interviews was collected using a collaboratively generated Google Form.
+
+
+\chapter{Overall Description}
+
+
+\section{Product Perspective}
+This product has two key contexts.
+
+
+\subsection{System interfaces}
+Because this is a web based platform, the system shall operate following standard web usage specification. There should be no limitation in what web browser is used or how powerful the system accessing the service is.
+
+
+
+\subsection{User Interfaces}
+Below, the word ``training'' in the context of the user shall refer to the reading of user documentation or demonstration videos by the user. A general rule of them when developing application interfaces and mobile applications is to follow expected design schemes and practices. For instance, the first screen that the user shall see when loading the app will be a login/authentication component. Clicking on a \texttt{x} button within the application shall close or remove a component. Following best practices will ensure that everything within the application is intuitive.
+\begin{enumerate}
+	\item[1.] Interfaces of this platform shall be intuitive and familiar to the user.
+	\begin{itemize}
+		\item[i.] The user shall be able to login and logout in less than 2 seconds with no training.
+		\item[ii.] The user shall be able to recover their account in less than 10 seconds with no training.
+		\item[iii.] The user shall be able to setup their personal privacy filters and primary contacts in less than 1 minute with no training.
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Hardware Interfaces}
+
+
+\newpage
+\subsection{Software Interfaces}
+All third-party software interfaces used for development and implementation
+shall not be be in an End-of-Life (EOL) state. This means, they shall actively supported 
+by their original developing organization and in a Long-Term-Support (LTS) state. \\
+[TBD] All third-party software interfaces.\\ \\
+\centerline{
+\begin{tabular}{|c|c|c|}
+\hline
+Name & Version Number & Source \\
+\hline 
+\end{tabular}
+}
+
+
+\section{Product Functions}
+The product will provide the following functions. Functions will be added or removed as 
+development progresses. Functions are listed in order of priority. Functions are enumerated in detail in section 3 of this document.
+
+
+\section{User Characteristics}
+Users may be anyone of any age, educational level, or technical background. As the application is meant for the betterment and piece of mind of all, there are no assumptions or minimizations on the demographics or target audience of the application.
+
+
+\section{Constraints}
+
+
+\section{Assumptions and Dependencies}
+Changes to this SRS are dependent on the requirements or desires of stakeholders, customers, developers, and advisors. 
+
+
+\chapter{Specific Requirements}
+
+\section{System features}
+
+
+\subsubsection{Stimulus/Response sequence}
+\vspace{5mm}
+	$\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} Customer will click a register button on the front-end of the web interface for the platform.\\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall direct the user to the account registration screen.
+
+\vspace{5mm}
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} Customer will submit a registration form on the front-end of the web interface for the platform.\\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall create an initial account for the customer.
+
+\vspace{5mm}
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} Customer will click a button in the options section of the platform to request an API key .\\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall generate, store, and display a client ID and API key for the customer.
+
+\vspace{5mm}
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} Customer will click a login button on the front-end of the web interface for the platform.
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall prompt the customer for their registered email and password and log the customer in to access services.
+\newpage
+
+\vspace{5mm}
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} Customer has forgotten their password. The customer shall click a forgotten password option on the front-end of the web interface for the platform and enter their email.\\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall email the customer a link to reset their password.
+
+\vspace{5mm}
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} Customer has an API key and makes an HTTP request using an interface external to the web interface for the platform.\\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall respond with the requested data for the specific target micro-service of the HTTP request.
+
+
+\subsubsection{Functional Requirements}
+\begin{enumerate}
+	\item[1.] The system shall utilize standard HTTP encryption practices.
+	\item[2.] The system shall not result in any encryption issues, after an infinite number of request-response transactions.
+	\item[3.] The system shall provide a database of all registered users.
+	\item[4.] The system shall provide a database of all subscribed users.
+	\item[5.] The system shall keep a log of all generated API keys.
+	\item[6.] The system shall track the number of authenticated requests made by an API key.
+	\item[7.] The system shall require customers to be logged in to use any micro-service.
+\end{enumerate}
+
+\subsubsection{Non-function Requirements}
+\begin{enumerate}
+	\item[1.] Customers shall be able to make accounts accounts in less than 1 minute with no training.
+	\item[2.] Customers shall be able to verify the email address associated with their account in less than 1 minute with no training.
+	\item[3.] Customers shall be able to generate API keys for the platform in less than 10 seconds with no training.
+	\item[4.] Customers shall be able to login to their account in less than 1 minute with no training.
+\end{enumerate}
+
+
+\subsection{System Feature 1 - SOS Button}
+\subsubsection{Introduction}
+This is a very high priority feature. This feature will provide users, depending on the severity of their emergency, the ability to notify emergency services and/or their primary contacts.
+
+\subsubsection{Stimulus/Response sequence}
+\vspace{5mm}
+	$\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user is in an emergency situation. \\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The user shall open the application and determine if they are in a \texttt{Severe} or \texttt{Mild} emergency.
+\vspace{5mm}\\
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user shall select the \texttt{Severe} or \texttt{Mild} button.\\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} If the user selected \texttt{Severe}, then the system shall automatically call emergency services and notify the users primary contacts via SMS. If the user selected \texttt{Mild} then the system shall notify the users contacts via SMS and display emergency service locations (i.e. Hospital's and pharmacies) that are within a 
+\\
+\subsubsection{Functional Requirements}
+\begin{enumerate}
+	\item[1.] The system shall display the status of all of it's child micro-services.
+	\item[2.] The system shall keep a log of system uptime.
+	\item[3.] The system shall notifiy developers and support staff via email and SMS when any child micro-service goes offline, within 5 seconds of the service going offline.
+\end{enumerate}
+
+\subsubsection{Non-functional Requirements}
+\begin{enumerate}
+	\item[1.] Customers shall be able view if a micro-service is online or offline in less than 1 second with no training.
+	\item[2.] Customers shall be able to notified by support staff about system downtime or lack of speed in less than 1 hour with no training.
+	\item[3.] Customers shall be compensated within 24 hours, if the platform is offline for more than 4 hours.
+\end{enumerate}
+
+
+\section{Performance Requirements}
+\begin{enumerate}
+	\item[$\bullet$] The server of any component for the platform shall be able to receive at least 20,000 requests per second.
+	\item[$\bullet$] The server of any component for the platform shall be able to send at least 20,000 valid responses to the client per second.
+	\item[$\bullet$] The system shall be fully concurrent, performing no blocking I/O tasks.
+\end{enumerate}
+
+
+\section{Design constraints}
+
+
+
+\chapter{Appendices}
+
+\end{document}
