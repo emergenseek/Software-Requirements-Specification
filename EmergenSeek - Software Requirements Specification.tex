@@ -203,48 +203,75 @@ Changes to this SRS are dependent on the requirements or desires of stakeholders
 
 \subsubsection{Stimulus/Response sequence}
 \vspace{5mm}
-	$\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} Customer will click a register button on the front-end of the web interface for the platform.\\
+	$\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will open the application for the first time.\\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall direct the user to the account registration screen.
 
 \vspace{5mm}
-	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} Customer will submit a registration form on the front-end of the web interface for the platform.\\
-	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall create an initial account for the customer.
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select either the Google or Facebook log-in buttons.\\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall communicate with the Google API to retrieve and store user information.
 
 \vspace{5mm}
-	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} Customer will click a button in the options section of the platform to request an API key .\\
-	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall generate, store, and display a client ID and API key for the customer.
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select the emergency service locator.\\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system communicate with the Google Maps API to retrieve and display the locations of nearby emergency services.
 
 \vspace{5mm}
-	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} Customer will click a login button on the front-end of the web interface for the platform.
-	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall prompt the customer for their registered email and password and log the customer in to access services.
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will change the filter options for the emergency service locator.
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall make a new API call to reflect the modified search criteria.
 \newpage
 
 \vspace{5mm}
-	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} Customer has forgotten their password. The customer shall click a forgotten password option on the front-end of the web interface for the platform and enter their email.\\
-	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall email the customer a link to reset their password.
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select the contacts list.\\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall request the user to import contacts from Google, or to manually create a new contact.
 
 \vspace{5mm}
-	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} Customer has an API key and makes an HTTP request using an interface external to the web interface for the platform.\\
-	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall respond with the requested data for the specific target micro-service of the HTTP request.
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select a contact to import.\\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall communicate with the Google Contacts API to parse the desired contact's information and store it as a new contact associated with the user.
+
+\vspace{5mm}
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select manual contact creation.\\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall redirect the user to the contact creation page with the required fields to be completed.
+
+\vspace{5mm}
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select the S.O.S. alert.\\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall prompt the user to specify the level of the emergency situation.
+
+\vspace{5mm}
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select the mild emergency option.\\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall broadcast an alert to the contacts registered to receive minor emergency alerts.
+
+\vspace{5mm}
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select the severe emergency option.\\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall broadcast an alert to the contacts registered to receive severe emergency alerts, as well as communicate with the Twilio API to send an automated call to emergency services.
+
+\vspace{5mm}
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select the location update options.\\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall redirect the user to the options page for customizing location update notifications.
+
+\vspace{5mm}
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will enable location updates.\\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall periodically send location updates to the contacts registered to receive the notifications.
+	
+\vspace{5mm}
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select the emergency information page.\\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall retrieve the user's location via the device's GPS and display stored emergency information associated with the user's location.
 
 
 \subsubsection{Functional Requirements}
 \begin{enumerate}
-	\item[1.] The system shall utilize standard HTTP encryption practices.
-	\item[2.] The system shall not result in any encryption issues, after an infinite number of request-response transactions.
-	\item[3.] The system shall provide a database of all registered users.
-	\item[4.] The system shall provide a database of all subscribed users.
-	\item[5.] The system shall keep a log of all generated API keys.
-	\item[6.] The system shall track the number of authenticated requests made by an API key.
-	\item[7.] The system shall require customers to be logged in to use any micro-service.
+	\item[1.] The system shall allow users to sign-in using their Google account.
+	\item[2.] The system shall allow users to manually create contacts.
+	\item[3.] The system shall allow users to import contacts from their Google account.
+	\item[4.] The system shall display the locations of emergency services within a 10 mile radius of the user.
+	\item[5.] The system shall allow users to filter the selection of nearby emergency services.
+	\item[6.] The system shall send periodic location updates in accordance to the user's settings.
+	\item[7.] The system shall broadcast emergency alerts upon S.O.S. activation in accordance to the user's settings.
 \end{enumerate}
 
 \subsubsection{Non-function Requirements}
 \begin{enumerate}
-	\item[1.] Customers shall be able to make accounts accounts in less than 1 minute with no training.
-	\item[2.] Customers shall be able to verify the email address associated with their account in less than 1 minute with no training.
-	\item[3.] Customers shall be able to generate API keys for the platform in less than 10 seconds with no training.
-	\item[4.] Customers shall be able to login to their account in less than 1 minute with no training.
+	\item[1.] The system shall transition between menus in under 5 seconds.
+	\item[2.] The system shall allow users to log in in under 10 seconds.
+	\item[3.] The system shall continue to function without being impacted by API communication failures.
 \end{enumerate}
 
 
@@ -284,8 +311,7 @@ This is a very high priority feature. This feature will provide users, depending
 
 
 \section{Design constraints}
-
-
+As the system relies on frequent communication with various API's, the system's responsiveness and reliability depends heavily on the device's connectivity to the internet.
 
 \chapter{Appendices}
 
