@@ -83,23 +83,24 @@ Reference: \url{http://www.cse.msu.edu/~cse870/IEEEXplore-SRS-template.pdf}\\
 
 \section{Purpose}
 \par ~ The purpose of this application will be to develop a cross-platform mobile application which will assist users in gaining access to emergency information and notifications. The application will provide friends and family with realtime location-based information. The application will serve as a go-to utility for those that are traveling, both locally and abroad.
-\par ~ The intended audience of the document will be advisor's and stakeholders who will have procedural responsibilities throughout the development of this application. This document should be read in the order that it is presented. 
+\par ~ The intended audience of the document will be advisor's and stakeholders who will have procedural responsibilities throughout the development of this application. This document should be read in the order that it is presented. At the end of this document, intended readers should evaluate summarized interviews and take into account how system features and details of this specification are correlated those summaries.
 
 
 \section{Project Scope}
 \par ~ As the timeframe for this project is 3 months, developers shall consider the scope of this project to produce a functional, minimum viable product (MVP) which covers important usecases, functional requirements, and non-functional requirements. 
 
-\par ~ These MVP components include, (1) functional use of an SOS button which will automatically notify family members and/or emergency services depending on 2 degrees of emergency severity, (2) the ability to search for nearby hospitals, pharmacies, and other facilities that will assist the user in a time of emergency or distress, (3) location based polling which will broadcast metadata regarding the users current location to their primary contacts, friends, and family members, and (4), paired with (3), the ability to granularly define what permissions contacts have for the purpose of giving the user control over what private information they choose to share and with whom.
+\par ~ These MVP components include, (1) functional use of an S.O.S. button which will automatically notify family members and/or emergency services depending on 2 degrees of emergency severity, (2) the ability to search for nearby hospitals, pharmacies, and other facilities that will assist the user in a time of emergency or distress, (3) location based polling which will broadcast metadata regarding the users current location to their primary contacts, friends, and family members, and (4), paired with (3), the ability to granularly define what permissions contacts have for the purpose of giving the user control over what private information they choose to share and with whom.
 
 \par ~ Assumptions made in creating the MVP will ensure that the scope and size of the project is not too broad. Allowing the application to be generalized to only the specifics of emergency situations and notifications provides the developers with a much more specific set of features to implement.
 
-\par ~ Software products use include the Go programming language, which will serve as a backend API, React Native, which will serve as our single source, cross-platform mobile application framework, and a suite of Amazon Web Services to be used as utilities in driving the development of the program, as well as providing necessary tiers for the application. For instance, we will DynamoDB as the database tier and Lambda and API Gateway as the application platform; formally known as a a Functions-as-a-Service (Faas) offering.
+\par ~ Software products used include the Go programming language, which will serve as a backend API, React Native, which will serve as our single source, cross-platform mobile application framework, and a suite of Amazon Web Services to be used as utilities in driving the development of the program, as well as providing necessary tiers for the application. For instance, we will utilize DynamoDB as the database tier and Lambda and API Gateway as the application platform; formally known as a Functions-as-a-Service (Faas) offering.
 
 
 \section{Definitions, acronyms, and abbreviations}
 Definitions, acronyms, and abbreviations will be added to this section as they arise. Single use acronyms and abbreviations will be enumerated in-line, within the context that they are used.
 \begin{enumerate}
 	\item[i.] API - Application Programming Interface - An abstraction, provided by a developer or exposed to a developer for the sake of simplifying front-end and downstream programming and implementation.
+	\item[ii.] S.O.S. - A common distress code usually mistaken for "Save Our Souls." While the letters have no meaning, they are an alphabetical representation of the distress code's Morse code equivalent.
 \end{enumerate}
  
 \section{References}
@@ -117,7 +118,7 @@ Definitions, acronyms, and abbreviations will be added to this section as they a
 \item[b.] Amazon Web Services
 	\begin{itemize}
 		\item[i.] Documentation \url{https://docs.aws.amazon.com/index.html}
-		\item[ii.] DocumentDB - \url{https://aws.amazon.com/dynamodb/}
+		\item[ii.] DynamoDB - \url{https://aws.amazon.com/dynamodb/}
 	\end{itemize}
 \item[d.] API architecture
 	\begin{itemize}
@@ -315,5 +316,5 @@ This is a very high priority feature. This feature will provide users, depending
 As the system relies on frequent communication with various API's, the system's responsiveness and reliability depends heavily on the device's connectivity to the internet.
 
 \chapter{Appendices}
-
+\chapter{Index}
 \end{document}
