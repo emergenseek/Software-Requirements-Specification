@@ -35,7 +35,7 @@
     \rule{16cm}{5pt} \vskip1cm
     \begin{bfseries}
         \LARGE{SOFTWARE\\REQUIREMENTS SPECIFICATION} \\
-        \small{Includes Summarization of Interview Results} \\
+        \large{Includes Summarization of Interview Results} \\
         \vspace{1cm}
         \LARGE{
         \vspace{1cm}
@@ -45,8 +45,9 @@
         Prepared for \\
         \vspace{1cm}
         Texas Tech University - CS 4366 \\
-        Senior Capstone Project\\
-        Professor: Dr. Sunlim Ho\\
+        Senior Capstone Project \\
+        \vspace{1cm}
+        Professor: Dr. Sunho Lim \\
         Students: Suhas Bacchu, Derek Fritz, Kevon Manahan, Annie Vo, Simon Woldemichael \\}
         \vspace{1cm}
         \revdate \\
@@ -100,9 +101,11 @@ Reference: \url{http://www.cse.msu.edu/~cse870/IEEEXplore-SRS-template.pdf}\\
 \section{Definitions, acronyms, and abbreviations}
 \par ~ Definitions, acronyms, and abbreviations will be added to this section as they arise. Single use acronyms and abbreviations will be enumerated in-line, within the context that they are used.
 \begin{enumerate}
-	\item[1.] API - Application Programming Interface - An abstraction, provided by a developer or exposed to a developer for the sake of simplifying front-end and downstream programming and implementation.
+	\item[1.] API - Application Programming Interface - An abstraction, provided by developer or exposed to a developer for the sake of simplifying front-end and downstream programming and implementation.
 	\item[2.] S.O.S. - A common distress code usually mistaken for "Save Our Souls." While the letters have no meaning, they are an alphabetical representation of the distress code's Morse code equivalent.
 	\item[3.] MVP - Minimum Viable Product - The bare minimum system implementation required for the application to be released and usable by end-users.
+	\item[4.] REST - Representational State Transfer - A software architectural style that defines interfaces and specifications when developing and defining HTTP web APIs.
+	\item[4.] JSON - JavaScript Object Notation - A widely used standard of data transfer within the context of REST APIs.
 \end{enumerate}
 
 
@@ -200,7 +203,7 @@ Note: This is not a comprehensive list, but should be review in pair to section 
 
 
 \subsection{Communications Interfaces}
-\par ~ As this application is intended to be a network connected mobile application, it shall communicate over HTTP/2 (HyperText Transfer Protocol version 2), and WSP (The WebSocket protocol). Protocols utilized in underlying dependencies, libraries, or by cloud providers (AWS) will not be documented in this SRS.
+\par ~ As this application is intended to be a network connected mobile application, it shall communicate over HTTP/2 (HyperText Transfer Protocol version 2), and WSP (The WebSocket protocol). Protocols utilized in underlying dependencies, libraries, or by cloud providers (AWS) will not be documented in this SRS. Additionally, it is intended that the developers use Protocol Buffers to define software interfaces and custom backend API definitions, but this is a tentative desision as all communication between the mobile application and the backend API will occur using JSON.
 
 
 \section{Product Functions}
@@ -228,7 +231,7 @@ Changes to this SRS document are dependent on the requirements or desires of sta
 
 
 \chapter{Specific Requirements}
-Part 2 : Functions of this section shall detail, through grouping, \emph{general} stimuli and responses that the application and developers will expect. Following, will be stimuli-response pairings specific to individual system functions. It is important to note that trivial, expected features (features which are a given) are not considered features specific to our system. For instance, registering and logging in users is a trivial, and obvious necessity.
+Part 2 : Functions of this section shall detail, through grouping, the stimuli and responses that the application and developers will expect. Following, will be stimuli-response pairings specific to individual system functions. It is important to note that trivial, expected features (features which are a given) are not considered features specific to our system. For instance, registering and logging in users is a trivial, and obvious necessity.
 
 \section{External Interfaces}
 \begin{enumerate}
@@ -248,47 +251,47 @@ Part 2 : Functions of this section shall detail, through grouping, \emph{general
 		\item[ii.] \textit{Source of input or destination of output;} The mobile client shall send JSON messages to AWS when performing API requests and receive JSON messages to display the results of said requests.
 		\item[iii.] \textit{Valid range, accuracy, and/or tolerance;} Consideration for timing, accuracy, tolerance, and reliability of AWS shall not be considered as developers are not responsible for maintaining the underlying interfaces that power AWS.
 		\item[iv.]  \textit{Units of measure;} Milliseconds; used to determine the speed at which data is exchanged (request-response feedback). For instance, all JSON requests shall be responded too with the proper JSON response within 10 milliseconds.
-		\item[v.] \textit{Timing;} Uptime of AWS will again not be taken into consideration as the reliability of AWS can be further mitigated by the replication of application instances across several regions within the Virtual Private Cloud.
+		\item[v.] \textit{Timing;} Uptime of AWS will again not be taken into consideration as the reliability of AWS can be further mitigated by the replication of application instances across several regions within the AWS Virtual Private Cloud.
 	\end{itemize}
 \end{enumerate}
 \section{Functions}
 
 
 \subsubsection{General Stimulus-Response sequences}
-\vspace{5mm}
+\vspace{4mm}
 	$\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will open the application for the first time.\\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall direct the user to the account registration screen.
 
-\vspace{5mm}
+\vspace{4mm}
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select either the Google or Facebook log-in buttons.\\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall communicate with the Google or Facebook API to retrieve and store user information.
 
-\vspace{5mm}
+\vspace{4mm}
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select the emergency service locator.\\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system communicate with the Google Maps API to retrieve and display the locations of nearby emergency services.
 
-\vspace{5mm}
+\vspace{4mm}
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will change the filter options for the emergency service locator.\\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall make a new API call to reflect the modified search criteria.
 
-\vspace{5mm}
+\vspace{4mm}
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select the contacts list.\\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall request the user to import contacts from Google, or to manually create a new contact.
 \newpage
 
-\vspace{5mm}
+\vspace{4mm}
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select a contact to import.\\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall communicate with the Google Contacts API to parse the desired contact's information and store it as a new contact associated with the user.
 
-\vspace{5mm}
+\vspace{4mm}
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select manual contact creation.\\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall redirect the user to the contact creation page with the required fields to be completed.
 
-\vspace{5mm}
+\vspace{4mm}
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select the S.O.S. alert.\\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall prompt the user to specify the level of the emergency situation.
 
-\vspace{5mm}
+\vspace{4mm}
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select the mild emergency option.\\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall broadcast an alert to the contacts registered to receive minor emergency alerts.
 
@@ -296,16 +299,15 @@ Part 2 : Functions of this section shall detail, through grouping, \emph{general
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select the severe emergency option.\\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall broadcast an alert to the contacts registered to receive severe emergency alerts, as well as communicate with the Twilio API to send an automated call to emergency services.
 
-\vspace{5mm}
+\vspace{4mm}
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select the location update options.\\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall redirect the user to the options page for customizing location update notifications.
 
-\vspace{5mm}
+\vspace{4mm}
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will enable location updates.\\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall periodically send location updates to the contacts registered to receive the notifications.
-\newpage
-
-\vspace{5mm}
+	
+\vspace{4mm}
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select the emergency information page.\\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall retrieve the user's location via the device's GPS and display stored emergency information associated with the user's location.
 
@@ -328,23 +330,78 @@ Part 2 : Functions of this section shall detail, through grouping, \emph{general
 	\item[2.] The system shall allow users to log in in under 10 seconds.
 	\item[3.] The system shall continue to function without being impacted by API communication failures.
 	\item[4.] The system shall handle system failures through multi-instance replication via AWS.
+	\item[5.] The system shall follow security standards when managing communications between the mobile client and backend.
 \end{enumerate}
 
 
 \subsection{System Feature 1 - S.O.S. Button}
 \subsubsection{Introduction}
-This is a very high priority feature. This feature will provide users, depending on the severity of their emergency, the ability to notify emergency services and/or their primary contacts.
+This is a high priority feature. This feature will provide users, depending on the severity of their emergency, the ability to notify emergency services and/or their primary contacts.
 
 
 \subsubsection{Stimulus/Response sequence}
-\vspace{5mm}
+\vspace{4mm}
 	$\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user is in an emergency situation. \\
-	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The user shall open the application and determine if they are in a \texttt{Severe} or \texttt{Mild} emergency.
-\vspace{5mm}\\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The user shall open the application and select a \texttt{Severe} or \texttt{Mild} emergency button.
+\vspace{4mm}\\
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user shall select the \texttt{Severe} or \texttt{Mild} button.\\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} If the user selected \texttt{Severe}, then the system shall automatically call emergency services and notify the users primary contacts via SMS. If the user selected \texttt{Mild} then the system shall notify the users contacts via SMS and display emergency service locations (i.e. Hospital's and pharmacies) that are within a 5 to 10 mile range. \\
 
+\subsection{System Feature 2 - Emergency Service Locator}
+\subsubsection{Introduction}
+This is a high priority feature. This feature will provide users with the ability to search for nearby emergency services and utilities. Examples include hospitals, pharmacies, and police boxes.
 
+
+\subsubsection{Stimulus/Response sequence}
+\vspace{4mm}
+	$\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user is in a location abroad and would like to quickly search for emergency services. \\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The user shall open the application and navigate to to a tab which will display a map of these nearby locations.
+\vspace{4mm}\\
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user would like more emergency service results. The user increases the search radius.
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The application displays an increased radius of relevant emergency serviecs.
+	
+\subsection{System Feature 3 - Location-based Polling}
+\subsubsection{Introduction}
+This is a high priority feature. This feature will provide the users contacts with details about the users location and location history.
+
+
+\subsubsection{Stimulus/Response sequence}
+\vspace{4mm}
+	$\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user has selected primary contacts (friends and family members) who have permissions to receive live location data.
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall automatically and periodically (once an hour, or once a day), send the users location to selected contacts.
+
+
+\subsection{System Feature 4 - Granular Permission Definisions}
+\subsubsection{Introduction}
+This is a medium priority feature. This feature will provide the users with control over who is able to see what amount of specific information. For instance, family members will be given all access to the users location metadata and more frequently, whereas friends or co-workers may only get a general location and much less frequently.
+
+\subsubsection{Stimulus/Response sequence}
+\vspace{4mm}
+	$\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user creates a list of contacts and specifies a set of permissions to the list. \\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall ensure that all of the contacts on the list, on a per-list basis, only receive the level of permissions specified. 
+
+\vspace{4mm}
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user changes their primary contacts. \\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall ensure that the contacts no longer receive priority data or as-frequent notification per the specification of the user.
+
+
+\subsection{System Feature 5 - Lock Screen Display of Health Information}
+\subsubsection{Introduction}
+This is a medium priority feature. This feature will display the user's health and personal information automatically when in a severe emergency situation or manually on command.
+
+\subsubsection{Stimulus/Response sequence}
+\vspace{4mm}
+	$\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user has registered and stored their medical information in the applications database. \\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall ensure that that same data is displayed in the even of a severe emergency. 
+	
+\vspace{4mm}
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user selects the S.O.S. button and selects the severe emergency button. \\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall display a long-term notification on the lockscreen which includes medical and personal information related to the user. 
+
+\vspace{4mm}
+	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user selects a "Display Information" button in the applications interface. \\
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall display a long-term notification on the lockscreen which includes medical and personal information related to the user. 
+	
 
 \section{Performance Requirements}
 \begin{enumerate}
@@ -388,26 +445,26 @@ In this section we analysed the emergency preparedness amongst participants, bot
 
 \par ~ We have also found the need for an additional feature, an emergency service page. This feature would include information searched before-hand, emergency phone numbers, but may not be included in the MVP of version of our application.
 
-\subsection{Practical Analysis - Application Features}
-In this section, we asked the participant questions regarding their sentiment and opinion on the usefulness and demand for emergency-assistance-centric applications.
+\section{Practical Analysis - Application Features}
+In this section, we asked the participant questions regarding their sentiment and opinion on the usefulness and demand for emergency-assistance-centric applications. \\
 
-\textbf{What is the thing(s) you think of when people introduce you an "Emergency App"? Select all that apply.}
-\par ~ Heavy emphasis was placed on calling emergency services than we had previously anticipated
+\textbf{What is the thing(s) you think of when people introduce you an "Emergency App"? Select all that apply.} 
+\par ~ Heavy emphasis was placed on calling emergency services than we had previously anticipated. \\
 
-\textbf{If you were in an emergency situation how far would you be willing to go to find the assistance and resources that you need?}
-\par ~ Most users prioritized traveling a shorter distance, as it would not be logical to travel a far distance when in an emergency situation. This fell in line with our expectations.
+\textbf{If you were in an emergency situation how far would you be willing to go to find the assistance and resources that you need?} 
+\par ~ Most users prioritized traveling a shorter distance, as it would not be logical to travel a far distance when in an emergency situation. This fell in line with our expectations. \\
 
-\textbf{If your loved one was traveling abroad or very far from home, how often would you expect them to contact you or check-in with you?}
-\par ~ We anticipated that most people would want to hear from their loved ones more often than once a day. This did not fall in line with our expectations as people would be okay with keeping contact as infrequent as once a day. Although most people said once a day, the results were still somewhat skewed with large portions also wanting more frequent and less frequent locations. This justifies a feature which allows users to set different tiers of location polling.
+\textbf{If your loved one was traveling abroad or very far from home, how often would you expect them to contact you or check-in with you?} 
+\par ~ We anticipated that most people would want to hear from their loved ones more often than once a day. This did not fall in line with our expectations as people would be okay with keeping contact as infrequent as once a day. Although most people said once a day, the results were still somewhat skewed with large portions also wanting more frequent and less frequent locations. This justifies a feature which allows users to set different tiers of location polling. \\
 
 
 \textbf{If you could know, automatically, where your loved one was, how frequently would you want an up-to-date location?}
-\par ~ Upon specifying that location polling would be performed automatically on behalf of the user, more people expressed an interest in receiving more frequent location updates. There was also a presence of consideration on how intrusive the method of automated notification would be. We will incorporate this into our design choices when developing location-based updates. Overall, the answers were consistent with how often users would expect their loved ones to manually contact them. 
+\par ~ Upon specifying that location polling would be performed automatically on behalf of the user, more people expressed an interest in receiving more frequent location updates. There was also a presence of consideration on how intrusive the method of automated notification would be. We will incorporate this into our design choices when developing location-based updates. Overall, the answers were consistent with how often users would expect their loved ones to manually contact them. \\
 
 \textbf{What information would you like your loved ones to know in an emergency situation? Select all that apply.}
-\par ~ The selected information that the user's loved ones would need to know coincided with our expectation that location is the most pressing information that one would want to receive, followed by blood type.
+\par ~ The selected information that the user's loved ones would need to know coincided with our expectation that location is the most pressing information that one would want to receive, followed by blood type. \\
 
 \textbf{What travel information would you like to see about the country you are visiting? Select all that apply.}
-\par ~ Again, this section's selections support the need for our feature of nearby emergency services as the distribution of answers is almost equal. The need for including the location of one's home country's embassy could also be included, given the location is within the range of the user;s current location. With this, we found that most people would make use of a comprehensive list of emergency numbers for foreign locations (i.e. police, hospitals, embassies) as we cannot assume that all of these services are accessible through the same emergency phone number.
+\par ~ Again, this section's selections support the need for our feature of nearby emergency services as the distribution of answers is almost equal. The need for including the location of one's home country's embassy could also be included, given the location is within the range of the user;s current location. With this, we found that most people would make use of a comprehensive list of emergency numbers for foreign locations (i.e. police, hospitals, embassies) as we cannot assume that all of these services are accessible through the same emergency phone number. \\
 
 \end{document}
