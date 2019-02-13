@@ -48,6 +48,7 @@
         Senior Capstone Project\\
         Professor: Dr. Sunlim Ho\\
         Students: Suhas Bacchu, Derek Fritz, Kevon Manahan, Annie Vo, Simon Woldemichael \\}
+        \vspace{1cm}
         \revdate \\
     \end{bfseries}
 \end{flushleft}
@@ -82,8 +83,8 @@ Reference: \url{http://www.cse.msu.edu/~cse870/IEEEXplore-SRS-template.pdf}\\
 
 
 \section{Purpose}
-\par ~ The purpose of this application will be to develop a cross-platform mobile application which will assist users in gaining access to emergency information and notifications. The application will provide friends and family with realtime location-based information. The application will serve as a go-to utility for those that are traveling, both locally and abroad.
-\par ~ The intended audience of the document will be advisor's and stakeholders who will have procedural responsibilities throughout the development of this application. This document should be read in the order that it is presented. At the end of this document, intended readers should evaluate summarized interviews and take into account how system features and details of this specification are correlated those summaries.
+\par ~ The purpose of this document is to give a detailed description of the requirements for the ``EmergenSeek'' mobile application. It will illustrate the purpose and complete declaration for the development of system. It will explain system constraints and interfaces. EmergenSeek will assist users in gaining access to emergency information and notifications. The application will also provide friends and family with realtime location-based information. The application will serve as a go-to utility for those that are traveling, both locally and abroad in the event of an emergency.
+\par ~ The intended audience of the document will be advisor's and stakeholders who will have procedural responsibilities throughout the development of this application. This document should be read in the order that it is presented. At the end of this document, intended readers should evaluate summarized interviews and take into account how system features and details of this specification are correlated to said summaries.
 
 
 \section{Project Scope}
@@ -97,13 +98,15 @@ Reference: \url{http://www.cse.msu.edu/~cse870/IEEEXplore-SRS-template.pdf}\\
 
 
 \section{Definitions, acronyms, and abbreviations}
-Definitions, acronyms, and abbreviations will be added to this section as they arise. Single use acronyms and abbreviations will be enumerated in-line, within the context that they are used.
+\par ~ Definitions, acronyms, and abbreviations will be added to this section as they arise. Single use acronyms and abbreviations will be enumerated in-line, within the context that they are used.
 \begin{enumerate}
-	\item[i.] API - Application Programming Interface - An abstraction, provided by a developer or exposed to a developer for the sake of simplifying front-end and downstream programming and implementation.
-	\item[ii.] S.O.S. - A common distress code usually mistaken for "Save Our Souls." While the letters have no meaning, they are an alphabetical representation of the distress code's Morse code equivalent.
+	\item[1.] API - Application Programming Interface - An abstraction, provided by a developer or exposed to a developer for the sake of simplifying front-end and downstream programming and implementation.
+	\item[2.] S.O.S. - A common distress code usually mistaken for "Save Our Souls." While the letters have no meaning, they are an alphabetical representation of the distress code's Morse code equivalent.
+	\item[3.] MVP - Minimum Viable Product - The bare minimum system implementation required for the application to be released and usable by end-users.
 \end{enumerate}
  
 \section{References}
+Note: This is not a comprehensive list, but should be review in pair to section 2.1.4 Software Interfaces. Amendments to this section will be made by due diligence as additional, paramount sources of reference are utilized, as necessary.
 \begin{enumerate}
 \item[a.] Golang - Google's statically typed, compiled programming language
 	\begin{itemize}
@@ -113,9 +116,9 @@ Definitions, acronyms, and abbreviations will be added to this section as they a
 \item[b.] React Native - A JavaScript, cross-platform mobile application framework 
 	\begin{itemize}
 		\item[i.] Framework Specification - \url{https://facebook.github.io/react-native/docs/getting-started.html}
-		\item[ii.] ECMAScript Specification - \url{http://www.ecma-international.org/ecma-262/6.0/}0
+		\item[ii.] ECMAScript Specification - \url{http://www.ecma-international.org/ecma-262/6.0/}1
 	\end{itemize}
-\item[b.] Amazon Web Services
+\item[c.] Amazon Web Services
 	\begin{itemize}
 		\item[i.] Documentation \url{https://docs.aws.amazon.com/index.html}
 		\item[ii.] DynamoDB - \url{https://aws.amazon.com/dynamodb/}
@@ -126,10 +129,6 @@ Definitions, acronyms, and abbreviations will be added to this section as they a
 		\item[ii.] HTTP/2 - Version 2 of the Hypertext Transfer Protocol per RFC7540 - \url{https://tools.ietf.org/html/rfc7540}
 		\item[iii.] gRPC - Google's custom Remote Procedure Call framework - \url{https://grpc.io/}
 		\item[iv.] Protocol Buffers - Fast binary serialization and program definition language - \url{https://developers.google.com/protocol-buffers/}
-	\end{itemize}
-\item[c.] File encoding
-	\begin{itemize}
-		\item[i.] UTF-8 - \url{https://www.fileformat.info/info/unicode/utf8.htm}
 	\end{itemize}
 \end{enumerate}
 
@@ -144,13 +143,13 @@ Definitions, acronyms, and abbreviations will be added to this section as they a
 
 
 \section{Product Perspective}
-\par ~ Similar implementations of this application that we have researched are Life360 \url{https://www.life360.com/}, Guardly \url{https://en.wikipedia.org/wiki/Guardly}, and In Case of Emergency \url{https://en.wikipedia.org/wiki/In_Case_of_Emergency}. In comparison to these applications, our application serves a very similar purpose, but will integrate a wider range of emergency assistance features. For instance, the latter application is tailored more towards storing contact information, whereas our application will also provide that feature, in addition to several dynamic, location-based additions
+\par ~ Similar implementations of this application that we have researched are Life360 \url{https://www.life360.com/}, Guardly \url{https://en.wikipedia.org/wiki/Guardly}, and In Case of Emergency \url{https://en.wikipedia.org/wiki/In_Case_of_Emergency}. In comparison to these applications, our application serves a very similar purpose, but will integrate a wider range of emergency assistance features. For instance, the latter application is tailored more towards storing contact information, whereas our application will also provide that feature, in addition to several dynamic, location-based additions which are enumerated in Section 3 : Specific Requirements.
 
 
-\subsection{System interfaces}
-Because this is a web based platform, the system shall operate following standard web usage specification. There should be no limitation in what web browser is used or how powerful the system accessing the service is.
+\subsection{System Interfaces}
+\par ~ Because this is a mobile application, our application will conform to the requirements of running mobile applications through interfaces that have already been well defined and exposed for us as developers. Put clearly, because we are using popular mobile development frameworks and would like to develop and application that will run, cross-platform, on the top 2 most popular mobile operating systems (Android and iOS), we need not take any additional precautions or development considerations in order to ensure that we are able to run our application on modern day, mobile devices.
 
-
+\par ~ As our backend API is a separate entity from our mobile client, it shall too need to conform to some standards in-order to be hosted in a production state. Again, because we are provided friendly interfaces and abstractions on top of our deployment provider, Amazon Web Services' API's in this case, no additional consideration outside of the bare minimum requirements to run our projects on Amazon's platform needs to be taken.
 
 \subsection{User Interfaces}
 \par ~ Below, the word ``training'' in the context of the user shall refer to the reading of user documentation or demonstration videos by the user. A general rule of them when developing application interfaces and mobile applications is to follow expected design schemes and practices. For instance, the first screen that the user shall see when loading the app will be a login/authentication component. Clicking on a \texttt{x} button within the application shall close or remove a component. Following best practices will ensure that everything within the application is intuitive.
@@ -162,21 +161,34 @@ Because this is a web based platform, the system shall operate following standar
 		\item[iii.] The user shall be able to setup their personal privacy filters and primary contacts in less than 1 minute with no training.
 	\end{itemize}
 \end{enumerate}
+\par ~ It is also important to note, because of time constraints we will not take into consideration accessibility necessities and features which will assist end-users with visual or motor impairment. While this is not an assumption of the target demographic, as we did note that anyone would be able to use this application, it is something that would most definitely be implemented, outside of the scope of our plan for this course. For instance, visual accessibility considerations may be implemented by holding physical buttons on the device to perform automated actions (i.e. hold the volume up button for $n$ seconds to trigger the S.O.S. feature instead of opening the application and navigating to the feature).
 
 \subsection{Hardware Interfaces}
-
+\par ~ This subsection shall correspond to the same specifications as the System Interfaces section. Because the implementation of the project involves no external hardware interfaces (i.e. single board computers or microprocessors) we may develop all software and system interfaces without thinking about low-level programming languages or hardware details.
 
 \newpage
 \subsection{Software Interfaces}
-All third-party software interfaces used for development and implementation
-shall not be be in an End-of-Life (EOL) state. This means, they shall actively supported 
-by their original developing organization and in a Long-Term-Support (LTS) state. \\
-All third-party software interfaces.\\ \\
+\par ~ All third-party software interfaces used for development and implementation shall not be be in an End-of-life (EOL) state. This means, they shall actively supported by their original developing organization and in a Long Term Support (LTS) state.
+\par ~ While all additional dependencies used for specific software interfaces (i.e. programming languages) will not be documented, their usage shall conform to the open-source licenses that they are packaged with. For instance, in ordinance with the specifications of The GNU General Public License v3.0 (GNU GPLv3 - \url{https://www.gnu.org/licenses/gpl-3.0.en.html}) there shall be no closed-source or internal distributions of amendments to third-party software dependencies which are packaged with this license. \\
 \centerline{
-\begin{tabular}{|c|c|c|}
-\hline
-Name & Version Number & Source \\
-\hline 
+	\begin{tabular}{|c|c|c|}
+	\hline
+	Name & Version Number & Source \\
+	\hline
+	Golang & v1.11 & \url{https://github.com/golang/go} \\
+	\hline
+	AWS SDK for Go & v1.16.3X & \url{https://aws.amazon.com/sdk-for-go/} \\
+	\hline
+	Node.js & v10.15.1 & \url{https://nodejs.org/en/} \\
+	\hline
+	React Native & v0.58.X & \url{https://github.com/facebook/react-native} \\
+	\hline
+	Twilio API & Managed & \url{https://www.twilio.com/docs/libraries} \\
+	\hline
+	Google Location Services & Managed & \url{https://cloud.google.com/maps-platform/} \\
+	\hline
+	AWS CodeBuild CI/CD & Managed & \url{https://aws.amazon.com/codebuild/} \\
+	\hline
 \end{tabular}
 }
 
@@ -194,7 +206,7 @@ Users may be anyone of any age, educational level, or technical background. As t
 
 
 \section{Assumptions and Dependencies}
-Changes to this SRS are dependent on the requirements or desires of stakeholders, customers, developers, and advisors. 
+Changes to this SRS document are dependent on the requirements or desires of stakeholders, customers, developers, and advisors. 
 
 
 \chapter{Specific Requirements}
@@ -293,7 +305,7 @@ This is a very high priority feature. This feature will provide users, depending
 \begin{enumerate}
 	\item[1.] The system shall display the status of all of it's child micro-services.
 	\item[2.] The system shall keep a log of system uptime.
-	\item[3.] The system shall notifiy developers and support staff via email and SMS when any child micro-service goes offline, within 5 seconds of the service going offline.
+	\item[3.] The system shall notify developers and support staff via email and SMS when any child micro-service goes offline, within 5 seconds of the service going offline.
 \end{enumerate}
 
 \subsubsection{Non-functional Requirements}
@@ -306,15 +318,65 @@ This is a very high priority feature. This feature will provide users, depending
 
 \section{Performance Requirements}
 \begin{enumerate}
-	\item[$\bullet$] The server of any component for the platform shall be able to receive at least 20,000 requests per second.
-	\item[$\bullet$] The server of any component for the platform shall be able to send at least 20,000 valid responses to the client per second.
-	\item[$\bullet$] The system shall be fully concurrent, performing no blocking I/O tasks.
+	\item[1.] The server of any component for the platform shall be able to receive at least 20,000 requests per second.
+	\item[2.] The server of any component for the platform shall be able to send at least 20,000 valid responses to the client per second.
+	\item[3.] The system shall be fully concurrent, performing no blocking I/O tasks.
 \end{enumerate}
 
 
 \section{Design constraints}
-As the system relies on frequent communication with various API's, the system's responsiveness and reliability depends heavily on the device's connectivity to the internet.
+\begin{enumerate}
+	\item[1.] As the system relies on frequent communication with various API's, the system's responsiveness and reliability depends heavily on the device's connectivity to the internet.
+	\item[2.] Per the previous bullet, consideration should be taken for realtime updates and offline state management on the mobile client. This way, the mobile client can still queue data that it would like to send as soon as it is reconnected to a reliable network and can additionally receive updates in realtime.
+\end{enumerate}
 
-\chapter{Appendices}
-\chapter{Index}
+\chapter{Interview Summarization}
+\section{Introduction}
+\par ~ In this additional section 4, originally not apart of the recommended IEEE Std 830 specification, we shall summarize the findings of our analyses of potential target users. To perform this, we used a Google Form. The form contained a total of 3 sections and received a total of 30 responses. Physical quantities and graphs are left out of this document for brevity, but may be delivered upon request.
+
+\par ~ The first section contained questions which would allow us to analyze the user being studied. This includes information such as their age, level of technical ability, and other demographical information. Of the 30 users, we found the following characteristics present in the data collected:
+\begin{enumerate}
+	\item[1.] More than half of the users were within the 18 to 30 age group.
+	\item[2.] There was an almost even distribution in the gender, with slightly more males.
+	\item[3.] Only a quarter of participants had children.
+	\item[4.] More than 3 quarters of participants have been abroad.
+	\item[5.] More than 90\% of users consider themselves technologically literate.
+	\item[6.] \textbf{100\%} of participants \emph{regularly} carry a smartphone around with them.
+\end{enumerate}
+
+\par ~ Section's two and three of the form were used primarily to asks questions regarding the application. We split these sections into topical and practical analyses.
+
+\subsubsection{Topical Analysis - Emergency Preparedness}
+In this section we analysed the emergency preparedness amongst participants, both local and abroad.
+
+\par ~ From the answers collected addressing what the first thing is that people would do in an emergency situation, we have determined that the SOS button feature of our application would be of use to 90\% of survey participants.
+
+\par ~ Most of the individuals we interviewed do not travel on a regular basis, but rather travel occasionally. 
+
+\par ~ 90\% of users also chose, before traveling, to keep important information regarding their trip or travel destination on their mobile phone. The feature of providing all of the location-based emergency information for a user would be of great use to address this need.
+
+\par ~ We have also found the need for an additional feature, an emergency service page. This feature would include information searched before-hand, emergency phone numbers, but may not be included in the MVP of version of our application.
+
+\subsubsection{Practical Analysis - Application Features}
+In this section, we asked the participant questions regarding their sentiment and opinion on the usefulness and demand for emergency-assistance-centric applications.
+
+\textbf{What is the thing(s) you think of when people introduce you an "Emergency App"? Select all that apply.}
+\par ~ Heavy emphasis was placed on calling emergency services than we had previously anticipated
+
+\textbf{If you were in an emergency situation how far would you be willing to go to find the assistance and resources that you need?}
+\par ~ Most users prioritized traveling a shorter distance, as it would not be logical to travel a far distance when in an emergency situation. This fell in line with our expectations.
+
+\textbf{If your loved one was traveling abroad or very far from home, how often would you expect them to contact you or check-in with you?}
+\par ~ We anticipated that most people would want to hear from their loved ones more often than once a day. This did not fall in line with our expectations as people would be okay with keeping contact as infrequent as once a day. Although most people said once a day, the results were still somewhat skewed with large portions also wanting more frequent and less frequent locations. This justifies a feature which allows users to set different tiers of location polling.
+
+
+\textbf{If you could know, automatically, where your loved one was, how frequently would you want an up-to-date location?}
+\par ~ Upon specifying that location polling would be performed automatically on behalf of the user, more people expressed an interest in receiving more frequent location updates. There was also a presence of consideration on how intrusive the method of automated notification would be. We will incorporate this into our design choices when developing location-based updates. Overall, the answers were consistent with how often users would expect their loved ones to manually contact them. 
+
+\textbf{What information would you like your loved ones to know in an emergency situation? Select all that apply.}
+\par ~ The selected information that the user's loved ones would need to know coincided with our expectation that location is the most pressing information that one would want to receive, followed by blood type.
+
+\textbf{What travel information would you like to see about the country you are visiting? Select all that apply.}
+\par ~ Again, this section's selections support the need for our feature of nearby emergency services as the distribution of answers is almost equal. The need for including the location of one's home country's embassy could also be included, given the location is within the range of the user;s current location. With this, we found that most people would make use of a comprehensive list of emergency numbers for foreign locations (i.e. police, hospitals, embassies) as we cannot assume that all of these services are accessible through the same emergency phone number.
+
 \end{document}
