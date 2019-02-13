@@ -144,7 +144,7 @@ Note: This is not a comprehensive list, but should be review in pair to section 
 
 
 \section{Product Perspective}
-\par ~ Similar implementations of this application that we have researched are Life360 \url{https://www.life360.com/}, Guardly \url{https://en.wikipedia.org/wiki/Guardly}, and In Case of Emergency \url{https://en.wikipedia.org/wiki/In_Case_of_Emergency}. In comparison to these applications, our application serves a very similar purpose, but will integrate a wider range of emergency assistance features. For instance, the latter application is tailored more towards storing contact information, whereas our application will also provide that feature, in addition to several dynamic, location-based additions which are enumerated in Section 3 : Specific Requirements.
+\par ~ Similar implementations of this application that we have researched are \textit{Life360} \url{https://www.life360.com/}, \textit{Guardly} \url{https://en.wikipedia.org/wiki/Guardly}, and \textit{In Case of Emergency} \url{https://en.wikipedia.org/wiki/In_Case_of_Emergency}. In comparison to these applications, our application serves a very similar purpose, but will integrate a wider range of emergency assistance features. For instance, the latter application is tailored more towards storing contact information, whereas our application will also provide that feature, in addition to several dynamic, location-based additions which are enumerated in Section 3 : Specific Requirements.
 
 
 \subsection{System Interfaces}
@@ -154,7 +154,7 @@ Note: This is not a comprehensive list, but should be review in pair to section 
 
 
 \subsection{User Interfaces}
-\par ~ Below, the word ``training'' in the context of the user shall refer to the reading of user documentation or demonstration videos by the user. A general rule of them when developing application interfaces and mobile applications is to follow expected design schemes and practices. For instance, the first screen that the user shall see when loading the app will be a login/authentication component. Clicking on a \texttt{x} button within the application shall close or remove a component. Following best practices will ensure that everything within the application is intuitive.
+\par ~ Below, the word ``training'' in the context of the user shall refer to the reading of user documentation or demonstration videos, by the user. A general rule of them when developing application interfaces and mobile applications is to follow expected design schemes and practices. For instance, the first screen that the user shall see when loading the app will be a login/authentication component. Clicking on a \texttt{x} button within the application shall close or remove a component. Following best practices will ensure that everything within the application is intuitive.
 \begin{enumerate}
 	\item[1.] Interfaces of this platform shall be intuitive and familiar to the user.
 	\begin{itemize}
@@ -177,7 +177,7 @@ Note: This is not a comprehensive list, but should be review in pair to section 
 \vspace{1mm}
 
 \centerline{
-	\begin{tabular}{|c|c|c|}
+\begin{tabular}{|c|c|c|}
 	\hline
 	Name & Version Number & Source \\
 	\hline
@@ -204,7 +204,7 @@ Note: This is not a comprehensive list, but should be review in pair to section 
 
 
 \section{Product Functions}
-The product will provide the following functions. Functions are listed in order of priority and correspond to the system features that are discussed in section 3 : Specific Requirements. \begin{enumerate}
+The product will provide the following functions. Functions are listed in order of priority and correspond to the system features that are discussed in Section 3 : Specific Requirements. \begin{enumerate}
 	\item[1.] S.O.S. button emergency broadcast
 	\item[2.] Emergency service locator
 	\item[3.] Periodic notifications to contacts (location-based polling)
@@ -220,7 +220,7 @@ Users may be anyone of any age, educational level, or technical background. As t
 \section{Constraints}
 \par ~ Given that time is the largest constraint on our project, the only additional constraints that will come into consideration are those that abide by formally defined security and privacy definitions for the sake of end users. Regulatory policies such as the General Data Protection Regulation (GDPR) will ensure that the application and its components do not retain sensitive location information, that can be easily related a user, for ``no longer than necessary''. Under article 12.3 of the GDPR, the application shall also, in application development phases beyond the scope of this course and MVP, recognize legitimate erasure requests within the specified 30 day time limit. An official, sectioned copy of the regulation documentation may be found at the following url: \url{https://gdpr-info.eu/}.
 
-\par ~ Because our application utilizes modern, perform ant software interfaces, we will be able to achieve our goals of speed, reliability, and security without much additional work. See sections following section 3.1 on specific specifications of these goals.
+\par ~ Because our application utilizes modern, performant software interfaces, we will be able to achieve our goals of speed, reliability, and security without much additional work. See sections following section 3.1 on specific specifications of these goals.
 
 
 \section{Assumptions and Dependencies}
@@ -228,19 +228,40 @@ Changes to this SRS document are dependent on the requirements or desires of sta
 
 
 \chapter{Specific Requirements}
+Part 2 : Functions of this section shall detail, through grouping, \emph{general} stimuli and responses that the application and developers will expect. Following, will be stimuli-response pairings specific to individual system functions. It is important to note that trivial, expected features (features which are a given) are not considered features specific to our system. For instance, registering and logging in users is a trivial, and obvious necessity.
+
+\section{External Interfaces}
+\begin{enumerate}
+	\item[1.] Android and iOS Mobile Device
+	\begin{itemize}
+		\item[i.] \textit{Description of purpose;} Operating systems which our cross-platform application will compile runnable binaries for. The main interface in which the user will interact with.
+		\item[ii.] \textit{Source of input or destination of output;} Devices running these operating systems are assumed to have touch screen interfaces. As such, inputs will be read from the touch screen, and outputs displayed to the touch screen.
+		\item[iii.] \textit{Valid range, accuracy, and/or tolerance;} No consideration will be made to account for the sensitivity, working state, or reliability of the mobile device. It is the responsibility of the user to have a device which conforms to the hardware requirements necessary for running these operating systems. (i.e. compatible processors with ample RAM and disk space).
+		\item[iv.] \textit{Units of measure;} Seconds; used to determine the responsiveness of the interface components maintained and developed by project developers. For instance, no blocking actions shall occur to ensure that the interface may accept and display inputs and outputs with minimal latency.
+		\item[v.] \textit{Timing;} Frames-per-second (FPS); Cross-platform mobile components maintained and developed by project developers and any additional animations shall conform to the standard 60 FPS supported by modern smartphones running these operating systems.
+		\item[vi.] \textit{Data Formats;} The application shall, through the abstracted implementation of our cross-platform application's compiled, runnable binaries, conform to the operating system communication protocols necessary to make the app functional. This is another implementation detail that project developers
+	\end{itemize}
+	
+	\item[2.] Amazon Web Services (AWS)
+	\begin{itemize}
+		\item[i.] \textit{Description of purpose;} AWS shall be the platform, storage tier, and database tier for our application. 
+		\item[ii.] \textit{Source of input or destination of output;} The mobile client shall send JSON messages to AWS when performing API requests and receive JSON messages to display the results of said requests.
+		\item[iii.] \textit{Valid range, accuracy, and/or tolerance;} Consideration for timing, accuracy, tolerance, and reliability of AWS shall not be considered as developers are not responsible for maintaining the underlying interfaces that power AWS.
+		\item[iv.]  \textit{Units of measure;} Milliseconds; used to determine the speed at which data is exchanged (request-response feedback). For instance, all JSON requests shall be responded too with the proper JSON response within 10 milliseconds.
+		\item[v.] \textit{Timing;} Uptime of AWS will again not be taken into consideration as the reliability of AWS can be further mitigated by the replication of application instances across several regions within the Virtual Private Cloud.
+	\end{itemize}
+\end{enumerate}
+\section{Functions}
 
 
-\section{System features}
-
-
-\subsubsection{Stimulus/Response sequence}
+\subsubsection{General Stimulus-Response sequences}
 \vspace{5mm}
 	$\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will open the application for the first time.\\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall direct the user to the account registration screen.
 
 \vspace{5mm}
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select either the Google or Facebook log-in buttons.\\
-	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall communicate with the Google API to retrieve and store user information.
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall communicate with the Google or Facebook API to retrieve and store user information.
 
 \vspace{5mm}
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select the emergency service locator.\\
@@ -294,7 +315,7 @@ Changes to this SRS document are dependent on the requirements or desires of sta
 	\item[1.] The system shall allow users to sign-in using their Google account.
 	\item[2.] The system shall allow users to manually create contacts.
 	\item[3.] The system shall allow users to import contacts from their Google account.
-	\item[4.] The system shall display the locations of emergency services within a 10 mile radius of the user.
+	\item[4.] The system shall display the locations of emergency services within a 5 to 10 mile radius of the user.
 	\item[5.] The system shall allow users to filter the selection of nearby emergency services.
 	\item[6.] The system shall send periodic location updates in accordance to the user's settings.
 	\item[7.] The system shall broadcast emergency alerts upon S.O.S. activation in accordance to the user's settings.
@@ -306,6 +327,7 @@ Changes to this SRS document are dependent on the requirements or desires of sta
 	\item[1.] The system shall transition between menus in under 5 seconds.
 	\item[2.] The system shall allow users to log in in under 10 seconds.
 	\item[3.] The system shall continue to function without being impacted by API communication failures.
+	\item[4.] The system shall handle system failures through multi-instance replication via AWS.
 \end{enumerate}
 
 
@@ -322,21 +344,6 @@ This is a very high priority feature. This feature will provide users, depending
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user shall select the \texttt{Severe} or \texttt{Mild} button.\\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} If the user selected \texttt{Severe}, then the system shall automatically call emergency services and notify the users primary contacts via SMS. If the user selected \texttt{Mild} then the system shall notify the users contacts via SMS and display emergency service locations (i.e. Hospital's and pharmacies) that are within a 5 to 10 mile range. \\
 
-
-\subsubsection{Functional Requirements}
-\begin{enumerate}
-	\item[1.] The system shall display the status of all of it's child micro-services.
-	\item[2.] The system shall keep a log of system uptime.
-	\item[3.] The system shall notify developers and support staff via email and SMS when any child micro-service goes offline, within 5 seconds of the service going offline.
-\end{enumerate}
-
-
-\subsubsection{Non-functional Requirements}
-\begin{enumerate}
-	\item[1.] Customers shall be able view if a micro-service is online or offline in less than 1 second with no training.
-	\item[2.] Customers shall be able to notified by support staff about system downtime or lack of speed in less than 1 hour with no training.
-	\item[3.] Customers shall be compensated within 24 hours, if the platform is offline for more than 4 hours.
-\end{enumerate}
 
 
 \section{Performance Requirements}
@@ -370,7 +377,7 @@ This is a very high priority feature. This feature will provide users, depending
 
 \par ~ Section's two and three of the form were used primarily to asks questions regarding the application. We split these sections into topical and practical analyses.
 
-\subsubsection{Topical Analysis - Emergency Preparedness}
+\section{Topical Analysis - Emergency Preparedness}
 In this section we analysed the emergency preparedness amongst participants, both local and abroad.
 
 \par ~ From the answers collected addressing what the first thing is that people would do in an emergency situation, we have determined that the SOS button feature of our application would be of use to 90\% of survey participants.
@@ -381,7 +388,7 @@ In this section we analysed the emergency preparedness amongst participants, bot
 
 \par ~ We have also found the need for an additional feature, an emergency service page. This feature would include information searched before-hand, emergency phone numbers, but may not be included in the MVP of version of our application.
 
-\subsubsection{Practical Analysis - Application Features}
+\subsection{Practical Analysis - Application Features}
 In this section, we asked the participant questions regarding their sentiment and opinion on the usefulness and demand for emergency-assistance-centric applications.
 
 \textbf{What is the thing(s) you think of when people introduce you an "Emergency App"? Select all that apply.}
