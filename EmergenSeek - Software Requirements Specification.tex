@@ -84,7 +84,7 @@ Reference: \url{http://www.cse.msu.edu/~cse870/IEEEXplore-SRS-template.pdf}\\
 
 
 \section{Purpose}
-\par ~ The purpose of this document is to give a detailed description of the requirements for the ``EmergenSeek'' mobile application. It will illustrate the purpose and complete declaration for the development of system. It will explain system constraints and interfaces. EmergenSeek will assist users in gaining access to emergency information and notifications. The application will also provide friends and family with realtime location-based information. The application will serve as a go-to utility for those that are traveling, both locally and abroad in the event of an emergency.
+\par ~ The purpose of this document is to give a detailed description of the requirements for the ``EmergenSeek'' mobile application. It will illustrate the purpose and complete declaration for the development of the system. It will explain system constraints and interfaces. EmergenSeek will assist users in gaining access to emergency information and notifications. The application will also provide friends and family with realtime location-based information. The application will serve as a go-to utility for those that are traveling, both locally and abroad, in the event of an emergency.
 \par ~ The intended audience of the document will be advisor's and stakeholders who will have procedural responsibilities throughout the development of this application. This document should be read in the order that it is presented. At the end of this document, intended readers should evaluate summarized interviews and take into account how system features and details of this specification are correlated to said summaries.
 
 
@@ -95,22 +95,22 @@ Reference: \url{http://www.cse.msu.edu/~cse870/IEEEXplore-SRS-template.pdf}\\
 
 \par ~ Assumptions made in creating the MVP will ensure that the scope and size of the project is not too broad. Allowing the application to be generalized to only the specifics of emergency situations and notifications provides the developers with a much more specific set of features to implement.
 
-\par ~ Software products used include the Go programming language, which will serve as a backend API, React Native, which will serve as our single source, cross-platform mobile application framework, and a suite of Amazon Web Services to be used as utilities in driving the development of the program, as well as providing necessary tiers for the application. For instance, we will utilize DynamoDB as the database tier and Lambda and API Gateway as the application platform; formally known as a Functions-as-a-Service (Faas) offering.
+\par ~ Software products used include the Go programming language, which will serve as a backend API, React Native, which will serve as our single source, cross-platform mobile application framework, and a suite of Amazon Web Services to be used as utilities in driving the development and deployment of the program, as well as providing necessary tiers for the application. For instance, we will utilize DynamoDB as the database tier and Lambda and API Gateway as the application platform; formally known as a Functions-as-a-Service (Faas) offering.
 
 
 \section{Definitions, acronyms, and abbreviations}
 \par ~ Definitions, acronyms, and abbreviations will be added to this section as they arise. Single use acronyms and abbreviations will be enumerated in-line, within the context that they are used.
 \begin{enumerate}
 	\item[1.] API - Application Programming Interface - An abstraction, provided by developer or exposed to a developer for the sake of simplifying front-end and downstream programming and implementation.
-	\item[2.] S.O.S. - A common distress code usually mistaken for "Save Our Souls." While the letters have no meaning, they are an alphabetical representation of the distress code's Morse code equivalent.
+	\item[2.] S.O.S. - A common distress code usually mistaken for "Save Our Souls." While the letters have no meaning, they are an alphabetical representation of this distress code's Morse code equivalent.
 	\item[3.] MVP - Minimum Viable Product - The bare minimum system implementation required for the application to be released and usable by end-users.
-	\item[4.] REST - Representational State Transfer - A software architectural style that defines interfaces and specifications when developing and defining HTTP web APIs.
+	\item[4.] REST - Representational State Transfer - A software architectural style that defines interfaces and specifications when developing and defining web-based APIs.
 	\item[4.] JSON - JavaScript Object Notation - A widely used standard of data transfer within the context of REST APIs.
 \end{enumerate}
 
 
 \section{References}
-Note: This is not a comprehensive list, but should be review in pair to section 2.1.4 Software Interfaces. Amendments to this section will be made by due diligence as additional, paramount sources of reference are utilized, as necessary.
+Note: This is not a comprehensive list, but should be reviewed with respect to to Section 2.1.4 : Software Interfaces. Amendments to this section will be made by due diligence as additional, paramount sources of reference are utilized.
 \begin{enumerate}
 \item[a.] Golang - Google's statically typed, compiled programming language
 	\begin{itemize}
@@ -138,7 +138,7 @@ Note: This is not a comprehensive list, but should be review in pair to section 
 
 
 \section{Overview}
-\par ~ The rest of this Software Requirements Specification document will describe functional and non-functional requirements of the platform, constraints of various interfaces, and stimulus-response assumptions. Later revisions of this document may include pricing and marketing strategies to monetize and scale the application. This document will not contain design documents, as Project 3 is defined as a Software Design Specification. API specifics and implementation details will also be left out of this document. 
+\par ~ The rest of this Software Requirements Specification document will describe functional and non-functional requirements of the platform, constraints of various interfaces, and stimulus-response assumptions. Later revisions of this document may include pricing and marketing strategies to monetize and scale the application. This document will not contain design documents, as Project 3 is defined as a Software Design Specification. API specifics and end-user documentation will also be left out of this document. 
 
 \par ~ Finally, the latter end of this document shall include summarized results of user interviews that were conducted. Data for these interviews was collected using a collaboratively generated Google Form.
 
@@ -157,7 +157,7 @@ Note: This is not a comprehensive list, but should be review in pair to section 
 
 
 \subsection{User Interfaces}
-\par ~ Below, the word ``training'' in the context of the user shall refer to the reading of user documentation or demonstration videos, by the user. A general rule of them when developing application interfaces and mobile applications is to follow expected design schemes and practices. For instance, the first screen that the user shall see when loading the app will be a login/authentication component. Clicking on a \texttt{x} button within the application shall close or remove a component. Following best practices will ensure that everything within the application is intuitive.
+\par ~ Below, the word ``training'' in the context of the user shall refer to the reading of user documentation or demonstration videos, by the user. A general rule when developing application interfaces and mobile applications is to follow expected design schemes and practices. For instance, the first screen that the user shall see when loading the app will be a login/authentication component. Clicking on a \texttt{x} button within the application shall close or remove a component. Following best practices will ensure that everything within the application is intuitive.
 \begin{enumerate}
 	\item[1.] Interfaces of this platform shall be intuitive and familiar to the user.
 	\begin{itemize}
@@ -166,7 +166,7 @@ Note: This is not a comprehensive list, but should be review in pair to section 
 		\item[iii.] The user shall be able to setup their personal privacy filters and primary contacts in less than 1 minute with no training.
 	\end{itemize}
 \end{enumerate}
-\par ~ It is also important to note, because of time constraints we will not take into consideration accessibility necessities and features which will assist end-users with visual or motor impairment. While this is not an assumption of the target demographic, as we did note that anyone would be able to use this application, it is something that would most definitely be implemented, outside of the scope of our plan for this course. For instance, visual accessibility considerations may be implemented by holding physical buttons on the device to perform automated actions (i.e. hold the volume-up button for $n$ seconds to trigger the S.O.S. feature instead of opening the application and navigating to the feature).
+\par ~ It is also important to note, because of time constraints, we will not take into consideration accessibility necessities and features which will assist end-users with visual or motor impairment. While this is not an assumption of the target demographic, as we did note that anyone would be able to use this application, it is something that would most definitely be implemented, outside of the scope of our plan for this course. For instance, visual accessibility considerations may be implemented by holding physical buttons on the device to perform automated actions (i.e. hold the volume-up button for $n$ seconds to trigger the S.O.S. feature instead of opening the application and navigating to the feature).
 
 
 \subsection{Hardware Interfaces}
@@ -175,7 +175,7 @@ Note: This is not a comprehensive list, but should be review in pair to section 
 \newpage
 
 \subsection{Software Interfaces}
-\par ~ All third-party software interfaces used for development and implementation shall not be be in an End-of-life (EOL) state. This means, they shall actively supported by their original developing organization and in a Long Term Support (LTS) state.
+\par ~ All third-party software interfaces used for development and implementation shall not be be in an End-of-life (EOL) state. This means, they shall actively supported and maintained by their original developing organization and in a Long Term Support (LTS) state.
 \par ~ While all additional dependencies used for specific software interfaces (i.e. programming languages) will not be documented, their usage shall conform to the open-source licenses that they are packaged with. For instance, in ordinance with the specifications of The GNU General Public License v3.0 (GNU GPLv3 - \url{https://www.gnu.org/licenses/gpl-3.0.en.html}) there shall be no closed-source or internal distributions of amendments to third-party software dependencies which are packaged with this license. \\
 \vspace{1mm}
 
@@ -203,7 +203,7 @@ Note: This is not a comprehensive list, but should be review in pair to section 
 
 
 \subsection{Communications Interfaces}
-\par ~ As this application is intended to be a network connected mobile application, it shall communicate over HTTP/2 (HyperText Transfer Protocol version 2), and WSP (The WebSocket protocol). Protocols utilized in underlying dependencies, libraries, or by cloud providers (AWS) will not be documented in this SRS. Additionally, it is intended that the developers use Protocol Buffers to define software interfaces and custom backend API definitions, but this is a tentative desision as all communication between the mobile application and the backend API will occur using JSON.
+\par ~ As this application is intended to be a network connected mobile application, it shall communicate over HTTP/2 (HyperText Transfer Protocol version 2), and WSP (The WebSocket Protocol). Protocols utilized in underlying dependencies, libraries, or by cloud providers (AWS) will not be documented in this SRS. Additionally, it is intended that the developers use Protocol Buffers to define software interfaces and custom backend API definitions, but this is a tentative decision as all communication between the mobile application and the backend API may occur using JSON.
 
 
 \section{Product Functions}
@@ -221,9 +221,9 @@ Users may be anyone of any age, educational level, or technical background. As t
 
 
 \section{Constraints}
-\par ~ Given that time is the largest constraint on our project, the only additional constraints that will come into consideration are those that abide by formally defined security and privacy definitions for the sake of end users. Regulatory policies such as the General Data Protection Regulation (GDPR) will ensure that the application and its components do not retain sensitive location information, that can be easily related a user, for ``no longer than necessary''. Under article 12.3 of the GDPR, the application shall also, in application development phases beyond the scope of this course and MVP, recognize legitimate erasure requests within the specified 30 day time limit. An official, sectioned copy of the regulation documentation may be found at the following url: \url{https://gdpr-info.eu/}.
+\par ~ Given that time is the largest constraint on our project, the only additional constraints that will come into consideration are those that abide by formally defined security and privacy definitions for the sake of end users. Regulatory policies such as the General Data Protection Regulation (GDPR) will ensure that the application and its components do not retain sensitive location information, that can be easily related a user, for ``no longer than necessary.'' Under article 12.3 of the GDPR, the application shall also, in application development phases beyond the scope of this course and MVP, implement and recognize a legitimate data erasure interface for the purpose of data erasure requests within the specified 30 day time limit. An official, sectioned copy of the regulation documentation may be found at the following url: \url{https://gdpr-info.eu/}.
 
-\par ~ Because our application utilizes modern, performant software interfaces, we will be able to achieve our goals of speed, reliability, and security without much additional work. See sections following section 3.1 on specific specifications of these goals.
+\par ~ Because our application utilizes modern, performant software interfaces, we will be able to achieve our goals of speed, reliability, and security without much additional work. See sections following Section 3.1 on specific specifications of these goals.
 
 
 \section{Assumptions and Dependencies}
@@ -231,7 +231,7 @@ Changes to this SRS document are dependent on the requirements or desires of sta
 
 
 \chapter{Specific Requirements}
-Part 2 : Functions of this section shall detail, through grouping, the stimuli and responses that the application and developers will expect. Following, will be stimuli-response pairings specific to individual system functions. It is important to note that trivial, expected features (features which are a given) are not considered features specific to our system. For instance, registering and logging in users is a trivial, and obvious necessity.
+Functions of this section shall detail, through grouping, the stimuli and responses that the application and developers will expect. Following, will be stimuli-response pairings specific to individual system functions. It is important to note that trivial, expected features (features which are a given) are not considered features specific to our system. For instance, registering and logging in users is a trivial, and obvious necessity.
 
 \section{External Interfaces}
 \begin{enumerate}
@@ -264,11 +264,11 @@ Part 2 : Functions of this section shall detail, through grouping, the stimuli a
 
 \vspace{4mm}
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select either the Google or Facebook log-in buttons.\\
-	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall communicate with the Google or Facebook API to retrieve and store user information.
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall communicate with the Google or Facebook API to authenticate and retrieve users and their information.
 
 \vspace{4mm}
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select the emergency service locator.\\
-	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system communicate with the Google Maps API to retrieve and display the locations of nearby emergency services.
+	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall communicate with the Google Maps API to retrieve and display the locations of nearby emergency services.
 
 \vspace{4mm}
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will change the filter options for the emergency service locator.\\
@@ -277,7 +277,6 @@ Part 2 : Functions of this section shall detail, through grouping, the stimuli a
 \vspace{4mm}
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select the contacts list.\\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall request the user to import contacts from Google, or to manually create a new contact.
-\newpage
 
 \vspace{4mm}
 	\hspace{-4.75mm} $\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user will select a contact to import.\\
@@ -367,7 +366,7 @@ This is a high priority feature. This feature will provide the users contacts wi
 
 \subsubsection{Stimulus/Response sequence}
 \vspace{4mm}
-	$\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user has selected primary contacts (friends and family members) who have permissions to receive live location data.
+	$\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user has selected primary contacts (friends and family members) who have permissions to receive live location data. \\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall automatically and periodically (once an hour, or once a day), send the users location to selected contacts.
 
 
@@ -391,7 +390,7 @@ This is a medium priority feature. This feature will display the user's health a
 
 \subsubsection{Stimulus/Response sequence}
 \vspace{4mm}
-	$\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user has registered and stored their medical information in the applications database. \\
+	$\bullet$ \textbf{Stimulus:} \\ \hspace{5mm} The user has registered and stored their medical information in the application's database. \\
 	$\bullet$ \textbf{Response:} \\ \hspace{5mm} The system shall ensure that that same data is displayed in the even of a severe emergency. 
 	
 \vspace{4mm}
@@ -407,7 +406,7 @@ This is a medium priority feature. This feature will display the user's health a
 \begin{enumerate}
 	\item[1.] The server of any component for the platform shall be able to receive at least 20,000 requests per second.
 	\item[2.] The server of any component for the platform shall be able to send at least 20,000 valid responses to the client per second.
-	\item[3.] The system shall be fully concurrent, performing no blocking I/O tasks.
+	\item[3.] The system shall be fully concurrent, performing no blocking Input/Output tasks.
 \end{enumerate}
 
 
@@ -448,7 +447,7 @@ In this section we analysed the emergency preparedness amongst participants, bot
 \section{Practical Analysis - Application Features}
 In this section, we asked the participant questions regarding their sentiment and opinion on the usefulness and demand for emergency-assistance-centric applications. \\
 
-\textbf{What is the thing(s) you think of when people introduce you an "Emergency App"? Select all that apply.} 
+\textbf{What is the thing(s) you think of when people introduce you an ``Emergency App''? Select all that apply.} 
 \par ~ Heavy emphasis was placed on calling emergency services than we had previously anticipated. \\
 
 \textbf{If you were in an emergency situation how far would you be willing to go to find the assistance and resources that you need?} 
